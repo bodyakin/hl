@@ -5,6 +5,12 @@ spring:
     virtual:
       enabled: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+
 server:
   tomcat:
     accept-count: 10000
@@ -12,3 +18,4 @@ server:
     threads:
       max: 20000
     connection-timeout: 2s
+
