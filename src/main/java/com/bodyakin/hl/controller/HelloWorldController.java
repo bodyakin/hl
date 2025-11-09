@@ -22,7 +22,7 @@ public class HelloWorldController {
         final long now = System.nanoTime();
         final int cpuCycles = busyWork(cpuMsec);
         final long end = System.nanoTime();
-        Duration duration = Duration.ofMillis((end - now) / 1_000_000);
+        long duration = (end - now) / 1_000_000;
         return new PayloadDto(duration, cpuCycles);
     }
 
@@ -41,7 +41,7 @@ public class HelloWorldController {
     public record HelloDto(String value) {
     }
 
-    public record PayloadDto(Duration wallTimeSec, int totalCycles) {
+    public record PayloadDto(long wallTimeSec, int totalCycles) {
     }
 
 }
