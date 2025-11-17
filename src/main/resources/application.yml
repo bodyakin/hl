@@ -12,10 +12,6 @@ management:
         include: prometheus
 
 server:
-  tomcat:
-    accept-count: 2000
-    max-connections: 5000
-    threads:
-      max: 300
-    connection-timeout: 2s
+  netty:
+    connection-timeout: 1s
 

@@ -7,23 +7,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Duration;
 
+import reactor.core.publisher.Mono;
+
 @RestController
 @RequestMapping("/api")
 public class HelloWorldController {
     private static volatile double sink;
 
     @GetMapping("/hello")
-    public HelloDto hello() {
-        return new HelloDto("hello");
+    public Mono<HelloDto> hello() {
+        return Mono.just(new HelloDto("hello"));
     }
 
     @GetMapping("/payload")
-    public PayloadDto payload(@RequestParam(defaultValue = "100") long cpuMsec) {
+    public Mono<PayloadDto> payload(@RequestParam(defaultValue = "100") long cpuMsec) {
         final long now = System.nanoTime();
         final int cpuCycles = busyWork(cpuMsec);
         final long end = System.nanoTime();
         long duration = (end - now) / 1_000_000;
-        return new PayloadDto(duration, cpuCycles);
+        return Mono.just(new PayloadDto(duration, cpuCycles));
     }
 
     private int busyWork(long timeMs) {
