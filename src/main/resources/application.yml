@@ -13,9 +13,9 @@ management:
 
 server:
   tomcat:
-    accept-count: 10_000
-    max-connections: 100_000
+    accept-count: 2000
+    max-connections: 5000
     threads:
-      max: 20000
+      max: 300
     connection-timeout: 2s
 
